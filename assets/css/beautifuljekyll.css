@@ -181,7 +181,7 @@ img {
 }
 
 .navbar-custom .navbar-nav .nav-item {
-  text-transform: lowercase; /* ky */
+  text-transform: none; /* ky */
   font-size: 0.8125rem;
   letter-spacing: 0.0625rem;
 }
