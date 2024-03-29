@@ -409,6 +409,7 @@ footer a:focus {
 }
 
 footer .list-inline {
+  list-style: none; /* ky */
   margin: 0;
   padding: 0;
   margin-bottom: 1.875rem;
