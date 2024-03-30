@@ -57,7 +57,8 @@ html {
     font-style: italic;
 }
 body {
-  font-family: 'Computer Modern Serif', 'Lora', 'Times New Roman', serif;
+  /* font-family: 'Computer Modern Serif', 'Lora', 'Times New Roman', serif; */
+  font-family: 'Lora', 'Times New Roman', serif;
   font-size: 1.125rem;
   color: {{ site.text-col | default: "#404040" }};
   position: relative;
