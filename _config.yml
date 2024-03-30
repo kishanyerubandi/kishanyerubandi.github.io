@@ -23,12 +23,14 @@ author: Kishan Yerubandi
 
 navbar-links:
   Home: "https://kishanyerubandi.github.io"
-  About Me: "aboutme"
-  Astropy Notes: "astropy_notes/astropy_notes_01"
-  Resources:
-    - arXiv: "https://arxiv.org/"
-    - bioRxiv: "https://www.biorxiv.org/"
-    - NASA/ADS: "https://ui.adsabs.harvard.edu/"
+  #About Me: "aboutme"
+  My Astropy Notes: "astropy_notes/astropy_notes_01"
+  Downey Astropy Book: "https://allendowney.github.io/AstronomicalData/README.html"
+  Astropy Workshop: "https://github.com/astropy/astropy-workshop"
+  #Resources:
+  #  - arXiv: "https://arxiv.org/"
+  #  - bioRxiv: "https://www.biorxiv.org/"
+  #  - NASA/ADS: "https://ui.adsabs.harvard.edu/"
 
 ################
 # --- Logo --- #
