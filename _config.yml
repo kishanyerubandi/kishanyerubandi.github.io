@@ -24,11 +24,11 @@ author: Kishan Yerubandi
 navbar-links:
   Home: "https://kishanyerubandi.github.io"
   About Me: "aboutme"
-  Notes:
-    - Astropy: "astropy_notes/astropy_notes_01"
+  Astropy Notes: "astropy_notes/astropy_notes_01"
   Resources:
     - arXiv: "https://arxiv.org/"
     - bioRxiv: "https://www.biorxiv.org/"
+    - NASA/ADS: "https://ui.adsabs.harvard.edu/"
 
 ################
 # --- Logo --- #
