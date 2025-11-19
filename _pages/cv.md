@@ -8,13 +8,13 @@ nav_order: 1
 <h4>&nbsp; Education</h4>
 <ul>
 <li><p>PhD-ABD in Theoretical Physics</p><p>University of Connecticut</p></li>
-
-<li><p>M.S., Seoul National University,
-Feb. 1996 </p></li>
-
-<li><p>B.S., Seoul National University,
-Feb. 1994 </p></li>
-
+<li><p>MS in Mathematics</p><p>University of Connecticut</p></li>
+<li><p>MS in Physics</p><p>University of Connecticut</p></li>
+<li><p>MS in Philosophy and History of Science</p><p>Department of Philosophy, Logic, and Scientific Method</p><p>London School of Economics</p></li>
+<li><p>Graduate Certificate in College Instruction</p><p>School of Education</p><p>University of Connecticut</p></li>
+<li><p>Visiting Student in Mathematics and Physics</p><p>Columbia University</p></li>
+<li><p>BS in Mathematics</p><p>Auburn University</p></li>
+<li><p>BS in Physics</p><p>Auburn University</p></li>
 </ul>
 <br>
 <hr>
