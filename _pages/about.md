@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Data Scientist and Theoretical Physicist.
+subtitle: <p style="font-size:20px;">Data Scientist and Theoretical Physicist</p>
 
 profile:
   align: right
