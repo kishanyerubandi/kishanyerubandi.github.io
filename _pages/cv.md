@@ -5,13 +5,14 @@ title: c.v.
 nav: true
 nav_order: 1
 ---
-<h4>&nbsp; Education</h4>
+<h4>&nbsp; Personal</h4>
 <ul>
 <li><p>Birth: Huntsville, Alabama</p></li>
 <li><p>Citizenship: United States</p></li>
 </ul>
 <br>
 <hr>
+<br>
 <h4>&nbsp; Education</h4>
 <ul>
 <li><p>PhD-ABD in Theoretical Physics</p><p>University of Connecticut</p></li>
