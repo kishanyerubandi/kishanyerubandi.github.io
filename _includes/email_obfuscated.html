@@ -1,0 +1,16 @@
+<a id="email-link" class="email-link"></a>
+<script>
+  (function () {
+    // TODO: put your real pieces here:
+    var user = "kishan.yerubandi";      // everything before the @
+    var domain = "gmail.com";      // everything after the @
+
+    var addr = user + "@" + domain;
+    var el = document.getElementById("email-link");
+    if (!el) return;
+
+    el.textContent = addr;
+    el.setAttribute("href", "mailto:" + addr);
+    el.setAttribute("rel", "noopener noreferrer");
+  })();
+</script>
