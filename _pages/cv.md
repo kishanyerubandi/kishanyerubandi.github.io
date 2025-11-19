@@ -7,6 +7,13 @@ nav_order: 1
 ---
 <h4>&nbsp; Education</h4>
 <ul>
+<li><p>Birth: Huntsville, Alabama</p></li>
+<li><p>Citizenship: United States</p></li>
+</ul>
+<br>
+<hr>
+<h4>&nbsp; Education</h4>
+<ul>
 <li><p>PhD-ABD in Theoretical Physics</p><p>University of Connecticut</p></li>
 <li><p>MS in Mathematics</p><p>University of Connecticut</p></li>
 <li><p>MS in Physics</p><p>University of Connecticut</p></li>
