@@ -1,0 +1,26 @@
+// Force a dark-looking palette for all themes
+
+:root,
+html[data-theme="light"],
+html[data-theme="dark"] {
+  /* Page background + text */
+  --global-bg-color: #1c1c1d;
+  --global-text-color: #c8c8c8;
+
+  /* Accent / link color */
+  --global-theme-color: #2698ba;
+  --global-hover-color: #2698ba;
+
+  /* Cards, dividers, footer */
+  --global-card-bg-color: #252526;
+  --global-divider-color: #424246;
+  --global-footer-bg-color: #121212;
+
+  /* Code blocks (optional but nice) */
+  --global-code-bg-color: #2c3237;
+}
+
+/* Hide the light/dark/system toggle button in the navbar */
+.toggle-container {
+  display: none !important;
+}
