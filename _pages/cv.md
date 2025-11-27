@@ -11,8 +11,6 @@ nav_order: 1
 <li><p>Citizenship: United States</p></li>
 </ul>
 <br>
-<hr>
-<br>
 <h4>&nbsp; Education</h4>
 <ul>
 <li><p>PhD-ABD in Theoretical Physics</p><p>University of Connecticut</p></li>
@@ -24,8 +22,6 @@ nav_order: 1
 <li><p>BS in Mathematics</p><p>Auburn University</p></li>
 <li><p>BS in Physics</p><p>Auburn University</p></li>
 </ul>
-<br>
-<hr>
 <br>
 <h4>&nbsp; Current and Past Appointments</h4>
 <ul>
