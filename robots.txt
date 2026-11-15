@@ -1,6 +1,16 @@
+
 ---
 permalink: /robots.txt
 ---
+
+# Block Internet Archive crawlers
+User-agent: ia_archiver
+Disallow: /
+
+User-agent: archive.org_bot
+Disallow: /
+
+# Allow ordinary search engines
 User-agent: *
 Disallow:
 
