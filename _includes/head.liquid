@@ -58,14 +58,25 @@
   >
 {% endif %}
 
-{% if site.icon.size <= 4 %}
-  <link
-    rel="shortcut icon"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>{{ site.icon }}</text></svg>"
-  >
-{% elsif site.icon != blank %}
-  <link rel="shortcut icon" href="{{ site.icon | prepend: '/assets/img/' | relative_url | bust_file_cache}}">
-{% endif %}
+<!-- BEGIN COMPTON FAVICON SET -->
+<link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon">
+<link rel="icon" href="{{ '/assets/img/favicon-16x16.png' | relative_url }}" type="image/png" sizes="16x16">
+<link rel="icon" href="{{ '/assets/img/favicon-32x32.png' | relative_url }}" type="image/png" sizes="32x32">
+<link rel="icon" href="{{ '/assets/img/favicon-48x48.png' | relative_url }}" type="image/png" sizes="48x48">
+<!-- Modern browsers use the simplified optical-size SVG. -->
+<link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml" sizes="any">
+<!-- Touch icons for historic and contemporary iOS/iPadOS clients. -->
+<link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon-120x120.png' | relative_url }}" sizes="120x120">
+<link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon-152x152.png' | relative_url }}" sizes="152x152">
+<link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon-167x167.png' | relative_url }}" sizes="167x167">
+<link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}" sizes="180x180">
+<!-- Safari macOS pinned tabs: monochrome SVG, color is specified here. -->
+<link rel="mask-icon" href="{{ '/assets/img/safari-pinned-tab.svg' | relative_url }}" color="#3477C6">
+<link rel="manifest" href="{{ '/manifest.webmanifest' | relative_url }}">
+<meta name="msapplication-config" content="{{ '/browserconfig.xml' | relative_url }}">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="msapplication-TileImage" content="{{ '/assets/img/mstile-144x144.png' | relative_url }}">
+<!-- END COMPTON FAVICON SET -->
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url | bust_css_cache }}">
 <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
 
