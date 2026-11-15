@@ -1,0 +1,66 @@
+\documentclass[tikz,border=0pt]{standalone}
+\usetikzlibrary{arrows.meta,decorations.pathmorphing,decorations.markings}
+\input{palette.tex}
+
+% ============================================================
+% Simplified optical-size version for 16px/32px favicons.
+% No particle letters: they blur at 16px.  Three electron arrows remain.
+% This same geometry is also used for the transparent Safari mask.
+% ============================================================
+\ifForSafariMask
+  \colorlet{SmallElectronColor}{black}
+  \colorlet{SmallPhotonColor}{black}
+  \colorlet{SmallArrowColor}{black}
+  \colorlet{SmallVertexColor}{black}
+\else
+  \colorlet{SmallElectronColor}{ElectronColor}
+  \colorlet{SmallPhotonColor}{PhotonColor}
+  \colorlet{SmallArrowColor}{ArrowColor}
+  \colorlet{SmallVertexColor}{VertexColor}
+\fi
+
+\newcommand{\SmallStroke}{9pt}           % bolder to survive 16px rasterization
+\newcommand{\SmallWaveAmplitude}{1.8mm}
+\newcommand{\SmallWavePeriod}{6.5mm}
+\newcommand{\SmallVertexRadius}{0.075}
+
+\tikzset{
+  electron/.style={draw=SmallElectronColor,line width=\SmallStroke,
+                   line cap=round,line join=round},
+  photon/.style={draw=SmallPhotonColor,line width=\SmallStroke,
+                 line cap=round,decorate,
+                 decoration={snake,amplitude=\SmallWaveAmplitude,
+                             segment length=\SmallWavePeriod}},
+  e-arrow/.style={postaction={decorate,decoration={markings,
+      mark=at position 0.53 with {
+        \arrow[draw=SmallArrowColor,fill=SmallArrowColor]
+              {Stealth[length=17pt,width=12pt]}
+      }}}}
+}
+
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \useasboundingbox (0,0) rectangle (6,6);
+  \ifForSafariMask
+    % No background: black artwork must remain transparent around the strokes.
+  \else
+    \fill[BackgroundColor] (0,0) rectangle (6,6);
+  \fi
+  \clip (0,0) rectangle (6,6);
+
+  \coordinate (A) at (1.60,2.90);
+  \coordinate (B) at (4.40,2.90);
+
+  % Left external electron; internal electron; right external electron.
+  \draw[electron,e-arrow] (0.62,0.73) -- (A);
+  \draw[electron,e-arrow] (A) -- (B);
+  \draw[electron,e-arrow] (B) -- (5.38,0.73);
+
+  % Two photon lines.
+  \draw[photon] (0.66,5.25) -- (A);
+  \draw[photon] (B) -- (5.34,5.25);
+
+  \fill[SmallVertexColor] (A) circle[radius=\SmallVertexRadius cm];
+  \fill[SmallVertexColor] (B) circle[radius=\SmallVertexRadius cm];
+\end{tikzpicture}
+\end{document}
