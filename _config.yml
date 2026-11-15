@@ -60,9 +60,9 @@ max_width: 930px
 # -----------------------------------------------------------------------------
 # Display links to the page with a preview object on social media.
 # see https://schema.org/docs/faq.html for more information
-serve_og_meta: false # Include Open Graph meta tags in the HTML head
+serve_og_meta: true # Enable link-preview metadata
 serve_schema_org: false # Include Schema.org in the HTML head
-og_image: # The site-wide (default for all links) Open Graph preview image
+og_image: https://kishanyerubandi.github.io/assets/img/og-image.png
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
@@ -171,6 +171,8 @@ kramdown:
 # Includes & excludes
 include: ["_pages", "_scripts"]
 exclude:
+  - scripts/
+  - favicon-src/
   - bin/
   - CONTRIBUTING.md
   - CUSTOMIZE.md
