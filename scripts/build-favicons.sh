@@ -99,9 +99,20 @@ for size in 70 150 310; do
 done
 
 # Adaptive Android icon: illustration fits completely inside mask safe circle.
+# Important: the small PDF-to-PNG source can contain a 1-2 pixel antialias
+# halo on its own right/bottom boundary. If we center it on a 512px canvas,
+# that halo becomes an INTERNAL square border, which outer-edge cleanup misses.
+# Erase a five-pixel perimeter on the 280x280 illustration BEFORE padding.
+# The actual diagram is far from the perimeter, so no artwork is lost.
 "${IM[@]}" "$TEMP/small.png" -filter Lanczos -resize 280x280! \
+  -alpha off -fill "$BG" -stroke none \
+  -draw 'rectangle 0,0 279,4' \
+  -draw 'rectangle 0,275 279,279' \
+  -draw 'rectangle 0,0 4,279' \
+  -draw 'rectangle 275,0 279,279' \
   -background "$BG" -gravity center -extent 512x512 \
-  "$IMG/maskable-icon-512x512.png"
+  -type TrueColor -depth 8 \
+  "PNG24:$IMG/maskable-icon-512x512.png"
 
 # PDF/Cairo rasterization and Lanczos resampling can create a one-pixel
 # antialiasing halo on the canvas edges (often visible on the right/bottom).
