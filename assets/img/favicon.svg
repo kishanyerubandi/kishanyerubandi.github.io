@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="170.079" height="170.079" viewBox="0 0 170.079 170.079">
+<rect x="0" y="0" width="100%" height="100%" fill="#000000"/>
+
 <defs>
 <clipPath id="clip-0">
 <path clip-rule="nonzero" d="M 0 0 L 169.164062 0 L 169.164062 169.164062 L 0 169.164062 Z M 0 0 "/>
