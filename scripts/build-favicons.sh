@@ -42,6 +42,30 @@ compile compton-safari-mask
 pdftocairo -svg "$TEMP/compton-small.pdf" "$IMG/favicon.svg"
 # Full detail retained as an independently scalable reference asset.
 pdftocairo -svg "$TEMP/compton-full.pdf" "$IMG/compton-diagram-labeled.svg"
+
+# Cairo's exported SVG canvas can extend slightly past the TikZ background.
+# Draw a full-canvas SVG rectangle UNDER the existing vectors, eliminating
+# hairlines along the right and bottom edges. The mask SVG is intentionally
+# excluded because Safari requires transparency around its artwork.
+python3 - "$IMG/favicon.svg" "$IMG/compton-diagram-labeled.svg" "$BG" <<'PY_SVG'
+import pathlib
+import re
+import sys
+from html import escape
+
+for filename in sys.argv[1:3]:
+    path = pathlib.Path(filename)
+    svg = path.read_text(encoding="utf-8")
+    opening = re.search(r"<svg\b[^>]*>", svg, flags=re.DOTALL)
+    if opening is None:
+        raise SystemExit(f"Expected an <svg> root element in {filename}")
+    # Insert before <defs> / all artwork, not over the Feynman diagram.
+    rect = (f'\n<rect x="0" y="0" width="100%" height="100%" '
+            f'fill="{escape(sys.argv[3], quote=True)}"/>\n')
+    svg = svg[:opening.end()] + rect + svg[opening.end():]
+    path.write_text(svg, encoding="utf-8")
+PY_SVG
+
 # Transparent monochrome mask for historical Safari macOS pinned tabs.
 pdftocairo -svg "$TEMP/compton-safari-mask.pdf" "$TEMP/mask-raw.svg"
 python3 "$ROOT/scripts/normalize-safari-svg.py" \
@@ -78,6 +102,43 @@ done
 "${IM[@]}" "$TEMP/small.png" -filter Lanczos -resize 280x280! \
   -background "$BG" -gravity center -extent 512x512 \
   "$IMG/maskable-icon-512x512.png"
+
+# PDF/Cairo rasterization and Lanczos resampling can create a one-pixel
+# antialiasing halo on the canvas edges (often visible on the right/bottom).
+# All the listed output icons are SOLID-BACKGROUND designs and their artwork
+# is inside the canvas, so paint exactly their outermost pixel rows/columns
+# using the requested palette color. This preserves every internal pixel.
+# Do NOT use this correction for the transparent Safari mask SVG.
+fix_raster_edges() {
+  local file="$1" dims w h tmp
+  dims="$("${IM[@]}" "$file" -format '%w %h' info:)"
+  read -r w h <<< "$dims"
+  [[ "$w" =~ ^[0-9]+$ && "$h" =~ ^[0-9]+$ && "$w" -ge 2 && "$h" -ge 2 ]] || {
+    echo "Unexpected image dimensions for $file: $dims" >&2
+    exit 1
+  }
+  tmp="${file%.png}.edgetmp.png"
+  "${IM[@]}" "$file" -alpha off -fill "$BG" -stroke none \
+    -draw "rectangle 0,-1 $w,0" \
+    -draw "rectangle 0,$((h-1)) $w,$h" \
+    -draw "rectangle -1,0 0,$h" \
+    -draw "rectangle $((w-1)),0 $w,$h" \
+    "$tmp"
+  mv "$tmp" "$file"
+}
+for file in \
+  "$IMG"/favicon-{16,32,48,64}x{16,32,48,64}.png \
+  "$IMG"/android-chrome-{192,512}x{192,512}.png \
+  "$IMG"/apple-touch-icon-{120,152,167,180}x{120,152,167,180}.png \
+  "$IMG"/apple-touch-icon.png \
+  "$IMG"/mstile-{70,144,150,310}x{70,144,150,310}.png \
+  "$IMG"/maskable-icon-512x512.png; do
+  [[ -f "$file" ]] || continue
+  fix_raster_edges "$file"
+done
+# Refresh legacy copies from corrected pixels.
+cp "$IMG/apple-touch-icon.png" "$ROOT/apple-touch-icon.png"
+cp "$IMG/apple-touch-icon.png" "$ROOT/apple-touch-icon-precomposed.png"
 
 # True ICO containing 4 separate bitmap dimensions.
 "${IM[@]}" \
