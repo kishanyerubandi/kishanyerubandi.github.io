@@ -1,0 +1,55 @@
+{%- comment -%}
+  Structured data for Kishan Yerubandi's personal website.
+  One consistent identity (@id) links the WebSite, Person, and pages.
+  The homepage is a ProfilePage; the CV and other pages are WebPages.
+  All URL and text values are serialized with jsonify for valid JSON.
+{%- endcomment -%}
+{%- assign sd_home = '/' | absolute_url -%}
+{%- assign sd_page_url = page.url | absolute_url -%}
+{%- assign sd_website_id = sd_home | append: '#website' -%}
+{%- assign sd_person_id = sd_home | append: '#person' -%}
+{%- assign sd_page_id = sd_page_url | append: '#webpage' -%}
+{%- assign sd_person_name = site.first_name | append: ' ' | append: site.last_name | strip -%}
+{%- assign sd_description = page.description | default: site.description | strip -%}
+{%- assign sd_photo = '/assets/img/headshot_smaller_v1.jpg' | absolute_url -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": {{ sd_website_id | jsonify }},
+      "url": {{ sd_home | jsonify }},
+      "name": {{ site.title | jsonify }},
+      "inLanguage": {{ site.lang | default: 'en' | jsonify }}
+    },
+    {
+      "@type": "Person",
+      "@id": {{ sd_person_id | jsonify }},
+      "name": {{ sd_person_name | jsonify }},
+      "url": {{ sd_home | jsonify }},
+      "description": {{ site.description | strip | jsonify }},
+      "image": {{ sd_photo | jsonify }},
+      "sameAs": [
+        "https://www.linkedin.com/in/kishan-yerubandi/",
+        "https://github.com/kishanyerubandi"
+      ]
+    },
+    {
+      "@type": {% if page.url == '/' %}"ProfilePage"{% else %}"WebPage"{% endif %},
+      "@id": {{ sd_page_id | jsonify }},
+      "url": {{ sd_page_url | jsonify }},
+      "name": {% if page.url == '/' %}{{ site.title | jsonify }}{% else %}{{ page.title | default: site.title | jsonify }}{% endif %},
+      "description": {{ sd_description | jsonify }},
+      "isPartOf": { "@id": {{ sd_website_id | jsonify }} },
+      {% if page.url == '/' %}
+      "mainEntity": { "@id": {{ sd_person_id | jsonify }} }
+      {% elsif page.url == '/cv/' %}
+      "about": { "@id": {{ sd_person_id | jsonify }} }
+      {% else %}
+      "author": { "@id": {{ sd_person_id | jsonify }} }
+      {% endif %}
+    }
+  ]
+}
+</script>
